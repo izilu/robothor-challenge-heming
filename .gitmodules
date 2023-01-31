@@ -1,0 +1,3 @@
+[submodule "submodules/detr-heming"]
+	path = submodules/detr-heming
+	url = git@github.com:xiaobaishu0097/detr-heming.git
