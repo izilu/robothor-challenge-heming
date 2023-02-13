@@ -156,11 +156,11 @@ class HiNLAgent(Agent):
         depth = observations["depth"]       # np.float32 : 480 x 640 (default: None)
         goal = observations["object_goal"]  # str : e.g. "AlarmClock"
 
-        output = inference_detector(self.local_detector, self.transform(rgb.copy()).cuda(), None)
+        output = inference_detector(self.local_detector, self.transform(rgb.copy()).cuda().unsqueeze(dim=0), None)
         result = self.detector_postprocessor['bbox'](output, torch.tensor([[300, 300]]).cuda())
-        detected_result = self.draw_detr_output(
-            rgb.copy(), result[0]['boxes'].cpu().numpy(), result[0]['labels'].cpu().numpy(), result[0]['scores'].cpu().numpy())
-        cv2.imwrite(f'./images/detection_results/{time.time():.2f}.jpg', detected_result)
+        # detected_result = self.draw_detr_output(
+        #     rgb.copy(), result[0]['boxes'].cpu().numpy(), result[0]['labels'].cpu().numpy(), result[0]['scores'].cpu().numpy())
+        # cv2.imwrite(f'./images/detection_results/{time.time():.2f}.jpg', detected_result)
         detection_inputs = self.process_local_feature(result, output, goal)
 
         global_features = self.resent_extractor(self.global_transform(rgb.copy()).unsqueeze(0).cuda())
