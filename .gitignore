@@ -1,2 +1,5 @@
 __pycache__
 *metrics.json
+
+images/detection_results/
+model_zoo/

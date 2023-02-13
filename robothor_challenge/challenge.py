@@ -234,7 +234,7 @@ class RobothorChallenge:
 
         while len(metrics["episodes"]) < expected_count:
             try:
-                ep_id, episode_metrics, episode_result = receive_queue.get(timeout=10)
+                ep_id, episode_metrics, episode_result = receive_queue.get(timeout=1000000)
                 metrics["episodes"][ep_id] = episode_metrics
                 if not test:
                     episode_results.append(episode_result)

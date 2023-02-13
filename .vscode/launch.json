@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "detr-api-inference",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/submodules/detr/apis/inference.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Validation",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/runner.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "-a", "agents.hinl_agent",
+                "-c", "./challenge_config.yaml",
+                "-d", "./dataset", "-o", "./hinl_metrics.json.gz",
+                "--val", "--nprocesses", "1"
+            ],
+            "env": {
+                "DISPLAY": "localhost:10.0"
+            },
+        },
+        {
+            "name": "extract-global-feature",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/agents/hinl/resnet_visual_feature.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+    ]
+}
